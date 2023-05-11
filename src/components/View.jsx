@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import GoogleSignin from "./GoogleSignin/GoogleSign";
 import AppleSingin from "./AppleSignin/AppleSingin";
-// import { detectDevices } from "../helper/generalHelper";
+import { detectDevices } from "../helper/generalHelper";
 
 export const View = () => {
   const userData = window.localStorage.getItem("user");
   const [user, setUser] = useState();
-  // const OS = detectDevices();
+  const OS = detectDevices();
 
   useEffect(() => {
     if (userData) {
@@ -61,11 +61,11 @@ export const View = () => {
           <div className="card">
             <div className="card-body p-4">
               <h5 className="text-center mb-3">Please login to continue</h5>
-              {/* {OS?.osName === "MacOS" && ( */}
-              <div className="mb-3">
-                <AppleSingin />
-              </div>
-              {/* // )} */}
+              {OS?.osName === "MacOS" && (
+                <div className="mb-3">
+                  <AppleSingin />
+                </div>
+              )}
               <GoogleSignin />
             </div>
           </div>
